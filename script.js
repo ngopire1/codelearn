@@ -153,9 +153,10 @@ function logout() {
 
 function showTab(tabName) {
     // Hide all tabs
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.add('hidden');
-    });
+    document.getElementById('learn-tab').style.display = 'none';
+    document.getElementById('projects-tab').style.display = 'none';
+    document.getElementById('challenges-tab').style.display = 'none';
+    document.getElementById('chat-tab').style.display = 'none';
     
     // Remove active class from all nav tabs
     document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -163,7 +164,7 @@ function showTab(tabName) {
     });
     
     // Show selected tab
-    document.getElementById(tabName + '-tab').classList.remove('hidden');
+    document.getElementById(tabName + '-tab').style.display = 'block';
     event.target.classList.add('active');
 }
 
@@ -289,6 +290,18 @@ function findPartner() {
 // Initialize with some demo functionality
 document.addEventListener('DOMContentLoaded', function() {
     generateCaptcha();
+    
+    // Ensure proper initial state - only welcome screen visible
+    document.getElementById('welcome-screen').style.display = 'flex';
+    document.getElementById('register-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('main-app').style.display = 'none';
+    
+    // Ensure only learn tab is visible initially when main app loads
+    document.getElementById('learn-tab').style.display = 'block';
+    document.getElementById('projects-tab').style.display = 'none';
+    document.getElementById('challenges-tab').style.display = 'none';
+    document.getElementById('chat-tab').style.display = 'none';
     
     // Add some dynamic animations
     const cards = document.querySelectorAll('.language-card');
