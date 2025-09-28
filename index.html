@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLearn - Educational Coding Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Welcome Landing Page -->
+    <div id="welcome-screen" class="auth-container">
+        <div class="auth-form" style="max-width: 500px; text-align: center;">
+            <div style="margin-bottom: 30px;">
+                <h1 style="font-size: 3rem; margin-bottom: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CodeLearn</h1>
+                <p style="color: #718096; font-size: 1.2rem; line-height: 1.6;">Interactive Programming Education Platform</p>
+            </div>
+            
+            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; margin-bottom: 30px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                <h3 style="color: #4a5568; margin-bottom: 20px;">Start Your Coding Journey</h3>
+                <div style="display: grid; gap: 15px; text-align: left; color: #718096;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #667eea;">📚</span> Learn JavaScript, Python & CSS
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #667eea;">🛠️</span> Build real-world projects
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #667eea;">⚡</span> Challenge other learners
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #667eea;">💬</span> Collaborate in real-time
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: grid; gap: 15px;">
+                <button class="btn" onclick="showRegisterScreen()" style="font-size: 18px; padding: 15px 30px;">
+                    Create Account
+                </button>
+                <button class="btn" onclick="showLoginScreen()" style="background: transparent; color: #667eea; border: 2px solid #667eea; font-size: 18px; padding: 15px 30px;">
+                    Login
+                </button>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                <p style="color: #a0aec0; font-size: 0.9rem;">Join thousands of learners mastering programming</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Screen -->
+    <div id="register-screen" class="auth-container hidden">
+        <div class="auth-form">
+            <h1>Join CodeLearn</h1>
+            <p style="margin-bottom: 20px; color: #718096;">Create your account to start learning</p>
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" placeholder="Enter your last name" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-email">Gmail Address</label>
+                <input type="email" id="reg-email" placeholder="Enter your Gmail address" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-password">Create Password</label>
+                <input type="password" id="reg-password" placeholder="Create a strong password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+            </div>
+            
+            <!-- Simple CAPTCHA -->
+            <div class="form-group">
+                <label for="captcha">Verify you're human: <span id="captcha-question"></span></label>
+                <input type="number" id="captcha" placeholder="Enter the answer" required>
+            </div>
+            
+            <button class="btn" onclick="register()">Create Account</button>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <p style="color: #718096;">Already have an account?</p>
+                <button class="btn" onclick="showLoginScreen()" style="background: transparent; color: #667eea; border: 2px solid #667eea; margin-top: 10px;">Go to Login</button>
+                <button class="btn" onclick="showWelcomeScreen()" style="background: transparent; color: #a0aec0; border: 2px solid #a0aec0; margin-top: 10px; margin-left: 10px;">← Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="auth-container hidden">
+        <div class="auth-form">
+            <h1>Welcome Back!</h1>
+            <p style="margin-bottom: 20px; color: #718096;">Sign in to continue learning</p>
+            
+            <div id="login-success" class="hidden" style="background: #c6f6d5; color: #22543d; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;">
+                <strong>Successfully Registered!</strong><br>
+                Now you can log in with your credentials.
+            </div>
+            
+            <div id="login-error" class="hidden" style="background: #feb2b2; color: #742a2a; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;">
+                <strong>Error!</strong><br>
+                <span id="login-error-message">Incorrect username or password. Please try again.</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="login-name">Full Name</label>
+                <input type="text" id="login-name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Enter your password" required>
+            </div>
+            
+            <button class="btn" onclick="login()">Sign In</button>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <p style="color: #718096;">New to CodeLearn?</p>
+                <button class="btn" onclick="showRegisterScreen()" style="background: transparent; color: #667eea; border: 2px solid #667eea; margin-top: 10px;">Create Account</button>
+                <button class="btn" onclick="showWelcomeScreen()" style="background: transparent; color: #a0aec0; border: 2px solid #a0aec0; margin-top: 10px; margin-left: 10px;">← Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-app" class="main-app">
+        <div class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">CodeLearn</div>
+                    <div class="user-info">
+                        <span>Welcome, <span id="user-display"></span>!</span>
+                        <button class="btn" onclick="logout()" style="width: auto; padding: 8px 16px;">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="showTab('learn')">Learn</div>
+                <div class="nav-tab" onclick="showTab('projects')">Projects</div>
+                <div class="nav-tab" onclick="showTab('challenges')">Challenges</div>
+                <div class="nav-tab" onclick="showTab('chat')">Live Chat</div>
+            </div>
+
+            <!-- Learn Tab -->
+            <div id="learn-tab" class="tab-content">
+                <h2>Choose a Programming Language</h2>
+                <div class="language-grid">
+                    <div class="language-card" onclick="startLearning('javascript')">
+                        <h3>JavaScript</h3>
+                        <p>Learn the language of the web. Build interactive websites and modern applications.</p>
+                    </div>
+                    <div class="language-card" onclick="startLearning('python')">
+                        <h3>Python</h3>
+                        <p>Start with the most beginner-friendly language. Perfect for data science and automation.</p>
+                    </div>
+                    <div class="language-card" onclick="startLearning('css')">
+                        <h3>CSS</h3>
+                        <p>Style the web with beautiful designs. Learn layouts, animations, and responsive design.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Tab -->
+            <div id="projects-tab" class="tab-content hidden">
+                <h2>Mini Projects</h2>
+                <p>Build real projects to practice your skills:</p>
+                <div class="challenge-list">
+                    <div class="challenge-item" onclick="startProject('calculator')">
+                        <div class="challenge-title">JavaScript Calculator</div>
+                        <div class="challenge-desc">Build a fully functional calculator with HTML, CSS, and JavaScript.</div>
+                        <span class="difficulty easy">Easy</span>
+                    </div>
+                    <div class="challenge-item" onclick="startProject('todo')">
+                        <div class="challenge-title">Python To-Do App</div>
+                        <div class="challenge-desc">Create a command-line to-do application using Python.</div>
+                        <span class="difficulty medium">Medium</span>
+                    </div>
+                    <div class="challenge-item" onclick="startProject('portfolio')">
+                        <div class="challenge-title">CSS Portfolio</div>
+                        <div class="challenge-desc">Design a responsive portfolio website using advanced CSS techniques.</div>
+                        <span class="difficulty medium">Medium</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenges Tab -->
+            <div id="challenges-tab" class="tab-content hidden">
+                <h2>Coding Challenges</h2>
+                <p>Test your skills against other learners:</p>
+                <div class="challenge-list">
+                    <div class="challenge-item" onclick="startChallenge('fizzbuzz')">
+                        <div class="challenge-title">FizzBuzz Challenge</div>
+                        <div class="challenge-desc">The classic programming challenge. Print numbers 1-100 with special rules for multiples of 3 and 5.</div>
+                        <span class="difficulty easy">Easy</span>
+                    </div>
+                    <div class="challenge-item" onclick="startChallenge('palindrome')">
+                        <div class="challenge-title">Palindrome Checker</div>
+                        <div class="challenge-desc">Write a function to check if a string reads the same forwards and backwards.</div>
+                        <span class="difficulty medium">Medium</span>
+                    </div>
+                    <div class="challenge-item" onclick="startChallenge('sorting')">
+                        <div class="challenge-title">Sorting Algorithm</div>
+                        <div class="challenge-desc">Implement and optimize different sorting algorithms.</div>
+                        <span class="difficulty hard">Hard</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Tab -->
+            <div id="chat-tab" class="tab-content hidden">
+                <h2>Live Chat</h2>
+                <div class="chat-container">
+                    <div>
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="message other">
+                                <strong>Sarah:</strong> Hey everyone! Working on the JavaScript calculator project. Anyone want to collaborate?
+                            </div>
+                            <div class="message other">
+                                <strong>Mike:</strong> I'm stuck on the FizzBuzz challenge. Can someone give me a hint?
+                            </div>
+                            <div class="message user">
+                                <strong>You:</strong> Hi Mike! For FizzBuzz, try using the modulo operator (%) to check for multiples.
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="message-input" placeholder="Type your message..." onkeypress="handleEnter(event)">
+                            <button onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                    <div class="online-users">
+                        <h3>Online Users (4)</h3>
+                        <div class="user-item">
+                            <div class="user-status"></div>
+                            <span>Sarah Chen</span>
+                        </div>
+                        <div class="user-item">
+                            <div class="user-status"></div>
+                            <span>Mike Johnson</span>
+                        </div>
+                        <div class="user-item">
+                            <div class="user-status"></div>
+                            <span>Alex Rodriguez</span>
+                        </div>
+                        <div class="user-item">
+                            <div class="user-status"></div>
+                            <span>You</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
